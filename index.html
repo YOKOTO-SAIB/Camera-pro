@@ -28,12 +28,44 @@
             backdrop-filter: blur(10px);
         }
 
+        /* Tombol dengan efek futuristik */
+        .button {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 18px;
+            color: white;
+            background: linear-gradient(45deg, #ff8c00, #ff4500);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            box-shadow: 0 3px 10px rgba(255, 140, 0, 0.5);
+        }
+
+        .button:hover {
+            background: linear-gradient(45deg, #ff4500, #ff8c00);
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.7);
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>Buka di Google Chrome</h2>
-        <p>salin teks di bawah untuk membuka Camera pro premium .</p>
+        <p>Tekan lama link di bawah ini sampai ada teks bernama buka lalu anda tekan jika sudah sudah ada di crom anda tinggal menekan tombol di bawah nya sajah.</p>
         <h1>https://yokoto-saib.github.io/Camera-pro/</h1>
+        <button class="button" onclick="bukaDiChrome()">Buka Sekarang</button>
+    </div>
+
+    <script>
+        function bukaDiChrome() {
+            var url = "https://yokoto-saib.github.io/Chat/";
+            window.location.href = url; // Membuka tautan di browser default
+
+            // Untuk memastikan terbuka di Chrome (khusus Android)
+            if (navigator.userAgent.includes("Android")) {
+                window.location.href = "googlechrome://navigate?url=" + url;
+            }
+        }
+    </script>
 </body>
 </html>
