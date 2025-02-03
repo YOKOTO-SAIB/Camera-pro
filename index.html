@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pindah ke Chrome</title>
+    <style>
+        /* Background dengan efek kamera pro */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: radial-gradient(circle at center, #222 10%, #000 90%);
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        /* Kotak tampilan */
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Tombol dengan efek futuristik */
+        .button {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 18px;
+            color: white;
+            background: linear-gradient(45deg, #ff8c00, #ff4500);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            box-shadow: 0 3px 10px rgba(255, 140, 0, 0.5);
+        }
+
+        .button:hover {
+            background: linear-gradient(45deg, #ff4500, #ff8c00);
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Buka di Google Chrome</h2>
+        <p>Klik tombol di bawah untuk membuka halaman di Google Chrome.</p>
+        <button class="button" onclick="bukaDiChrome()">Buka Sekarang</button>
+    </div>
+
+    <script>
+    function bukaDiChrome() {
+        var url = window.location.href;
+
+        if (confirm("Apakah Anda ingin membuka halaman ini di Google Chrome?")) {
+            // Jika pengguna setuju, coba buka di Chrome
+            if (navigator.userAgent.includes("Android")) {
+                window.location.href = "googlechrome://navigate?url=" + url;
+                setTimeout(function () {
+                    window.location.href = url; // Jika gagal, tetap buka di WebView
+                }, 500);
+            } else {
+                window.location.href = url; // Jika bukan Android, langsung buka
+            }
+        }
+    }
+
+    function isWebView() {
+        return (navigator.userAgent.includes("wv") || (navigator.userAgent.includes("Android") && !navigator.userAgent.includes("Chrome")));
+    }
+
+    window.onload = function () {
+        if (isWebView()) {
+            document.body.innerHTML += '<p style="color: red;">Anda sedang dalam WebView. Klik tombol untuk membuka di Chrome.</p>';
+        }
+    }
+</script>
+</body>
+</html>
